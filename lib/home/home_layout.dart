@@ -1,3 +1,6 @@
+import 'package:clothes_store/pages/cart_screen.dart';
+import 'package:clothes_store/pages/home_screen.dart';
+import 'package:clothes_store/pages/menu_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomeLayout extends StatefulWidget {
@@ -9,35 +12,61 @@ class HomeLayout extends StatefulWidget {
 
 class _HomeLayoutState extends State<HomeLayout> {
   int currentIndex = 0;
+
+  final List<Widget> screens = [
+    const HomeScreen(),
+    const CartScreen(),
+    const MenuScreen(),
+  ];
+
+  final PageStorageBucket bucket = PageStorageBucket();
+  Widget currentScreen = const HomeScreen();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Temon We Bomba"),
-        centerTitle: true,
+      body: PageStorage(
+        bucket: bucket,
+        child: currentScreen,
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentIndex,
-        items: const [
-          BottomNavigationBarItem(
-            label: "Home",
-            icon: Icon(
-              Icons.home,
-            ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {},
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: BottomAppBar(
+        shape: CircularNotchedRectangle(),
+        notchMargin: 10,
+        child: Container(
+          height: 60,
+          child: Row(
+            mainAxisAlignment:
+                MainAxisAlignment.spaceBetween, //main.spaceBetween
+            children: <Widget>[
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start, //cross.start
+                children: [
+                  MaterialButton(
+                    onPressed: () {
+                      setState(() {
+                        currentScreen = HomeScreen();
+                        currentIndex = 0;
+                      });
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center, //main.center
+                      children: [
+                        Icon(
+                          Icons.home,
+                          color: currentIndex == 0 ? Colors.amber : Colors.grey,
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              )
+            ],
           ),
-          BottomNavigationBarItem(
-            label: "Cart",
-            icon: Icon(
-              Icons.shopping_cart,
-            ),
-          ),
-          BottomNavigationBarItem(
-            label: "Menu",
-            icon: Icon(
-              Icons.menu,
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
