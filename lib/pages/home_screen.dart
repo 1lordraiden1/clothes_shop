@@ -1,3 +1,4 @@
+import 'package:clothes_store/model/my_products.dart';
 import 'package:flutter/material.dart';
 import 'package:clothes_store/pages/pages_component/pages_component.dart';
 
@@ -58,4 +59,16 @@ _buildProductCategory(int index, String name) => Container(
         name,
         style: TextStyle(color: Colors.white),
       ),
+    );
+
+_buildAllProducts() => GridView.builder(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        childAspectRatio: (100 / 140),
+        crossAxisSpacing: 12,
+        mainAxisSpacing: 12,
+      ),
+      scrollDirection: Axis.vertical,
+      itemCount: MyProducts.allProducts.length,
+      itemBuilder: (context, index) => Container(),
     );
