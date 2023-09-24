@@ -12,7 +12,7 @@ class HomeLayout extends StatefulWidget {
 }
 
 class _HomeLayoutState extends State<HomeLayout> {
-  int currentIndex = 0;
+  int currentIndex = 1;
 
   final List<Widget> screens = [
     const CartScreen(),
@@ -20,7 +20,7 @@ class _HomeLayoutState extends State<HomeLayout> {
   ];
 
   final PageStorageBucket bucket = PageStorageBucket();
-  Widget currentScreen = const CartScreen();
+  Widget currentScreen = const HomeScreen();
 
   @override
   Widget build(BuildContext context) {
