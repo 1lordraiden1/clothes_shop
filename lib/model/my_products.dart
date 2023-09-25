@@ -6,8 +6,7 @@ class MyProducts {
       id: 1,
       name: "Nike T-Shirt White",
       category: "T-Shirt",
-      image:
-          "https://www.footlocker.com.eg/assets/styles/FootLocker/image-thumb__94422__product_zoom_large_800x800/317344050080_01.jpg",
+      image: "assets/images/nike_black_tshirt.jpg",
       description: "White T-Shirt from Nike with Nike icon",
       price: 200.00,
       quantity: 1,
@@ -16,11 +15,49 @@ class MyProducts {
       id: 2,
       name: "White Cotton T-Shirt",
       category: "T-Shirt",
-      image:
-          "https://www.footlocker.com.eg/assets/styles/FootLocker/image-thumb__94423__product_zoom_large_800x800/317344050080_02.jpg",
+      image: "assets/images/nike_black_tshirt.jpg",
       description: "White T-Shirt made from cotton",
       price: 180.00,
       quantity: 1,
     ),
+    Product(
+      id: 3,
+      name: "White Cotton T-Shirt",
+      category: "T-Shirt",
+      image: "assets/images/black_tshirt.jpg",
+      description: "White T-Shirt made from cotton",
+      price: 179.99,
+      quantity: 0,
+    ),
   ];
+  static List<Product> tshirts = [
+    Product(
+      id: 1,
+      name: "Nike T-Shirt White",
+      category: "T-Shirt",
+      image: "assets/images/nike_black_tshirt.jpg",
+      description: "White T-Shirt from Nike with Nike icon",
+      price: 200.00,
+      quantity: 1,
+    ),
+    Product(
+      id: 2,
+      name: "White Cotton T-Shirt",
+      category: "T-Shirt",
+      image: "assets/images/nike_black_tshirt.jpg",
+      description: "White T-Shirt made from cotton",
+      price: 180.00,
+      quantity: 1,
+    ),
+    Product(
+      id: 3,
+      name: "White Cotton T-Shirt",
+      category: "T-Shirt",
+      image: "assets/images/black_tshirt.jpg",
+      description: "White T-Shirt made from cotton",
+      price: 179.99,
+      quantity: 0,
+    ),
+  ];
+
 }

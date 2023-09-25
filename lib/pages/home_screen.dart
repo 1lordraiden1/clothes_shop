@@ -1,4 +1,5 @@
 import 'package:clothes_store/model/my_products.dart';
+import 'package:clothes_store/pages/pages_component/product_card.dart';
 import 'package:flutter/material.dart';
 import 'package:clothes_store/pages/pages_component/pages_component.dart';
 
@@ -39,6 +40,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 _buildProductCategory(1, "T-Shirts"),
                 _buildProductCategory(2, "Pants"),
               ],
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Expanded(
+              child: _buildAllProducts(),
             )
           ],
         ),
@@ -62,13 +69,31 @@ _buildProductCategory(int index, String name) => Container(
     );
 
 _buildAllProducts() => GridView.builder(
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        childAspectRatio: (100 / 140),
+        childAspectRatio: (1.0 / 1.4),
         crossAxisSpacing: 12,
         mainAxisSpacing: 12,
       ),
       scrollDirection: Axis.vertical,
       itemCount: MyProducts.allProducts.length,
-      itemBuilder: (context, index) => Container(),
+      itemBuilder: (context, index) {
+        final allProducts = MyProducts.allProducts[index];
+        return ProductCard(product: allProducts);
+      },
+    );
+
+_buildPants()=>GridView.builder(
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        childAspectRatio: (1.0 / 1.4),
+        crossAxisSpacing: 12,
+        mainAxisSpacing: 12,
+      ),
+      scrollDirection: Axis.vertical,
+      itemCount: MyProducts.tshirts.length,
+      itemBuilder: (context, index) {
+        final tshirtsList = MyProducts.tshirts[index];
+        return ProductCard(product: tshirtsList);
+      },
     );
