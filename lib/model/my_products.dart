@@ -29,6 +29,24 @@ class MyProducts {
       price: 179.99,
       quantity: 0,
     ),
+    Product(
+      id: 5,
+      name: "White Pants",
+      category: "Pants",
+      image: "assets/images/white_pants.jpeg",
+      description: "white comfortable stretch pants ",
+      price: 99.99,
+      quantity: 2,
+    ),
+    Product(
+      id: 5,
+      name: "White Pants",
+      category: "Pants",
+      image: "assets/images/white_pants.jpeg",
+      description: "white comfortable stretch pants ",
+      price: 99.99,
+      quantity: 0,
+    ),
   ];
   static List<Product> tshirts = [
     Product(
@@ -59,5 +77,24 @@ class MyProducts {
       quantity: 0,
     ),
   ];
-
+  static List<Product> pants = [
+    Product(
+      id: 5,
+      name: "White Pants",
+      category: "Pants",
+      image: "assets/images/white_pants.jpeg",
+      description: "white comfortable stretch pants ",
+      price: 99.99,
+      quantity: 2,
+    ),
+    Product(
+      id: 5,
+      name: "White Pants",
+      category: "Pants",
+      image: "assets/images/white_pants.jpeg",
+      description: "white comfortable stretch pants ",
+      price: 99.99,
+      quantity: 0,
+    ),
+  ];
 }

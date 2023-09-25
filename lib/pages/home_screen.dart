@@ -1,4 +1,5 @@
 import 'package:clothes_store/model/my_products.dart';
+import 'package:clothes_store/pages/details_screen.dart';
 import 'package:clothes_store/pages/pages_component/product_card.dart';
 import 'package:flutter/material.dart';
 import 'package:clothes_store/pages/pages_component/pages_component.dart';
@@ -14,7 +15,95 @@ class HomeScreen extends StatefulWidget {
 
 int isSelected = 0;
 
+int categoryIndex = 0;
+
 class _HomeScreenState extends State<HomeScreen> {
+  _buildProductCategory(int index, String name) => GestureDetector(
+        onTap: () => setState(() => isSelected = index),
+        child: Container(
+          height: height * 4,
+          width: width * 10,
+          margin: const EdgeInsets.only(top: 10, right: 10),
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+              color: isSelected == index ? mainColor : lowColor,
+              borderRadius: BorderRadius.circular(8)),
+          child: Text(
+            name,
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
+      );
+
+  _buildAllProducts() => GridView.builder(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          childAspectRatio: (1.0 / 1.4),
+          crossAxisSpacing: 12,
+          mainAxisSpacing: 12,
+        ),
+        scrollDirection: Axis.vertical,
+        itemCount: MyProducts.allProducts.length,
+        itemBuilder: (context, index) {
+          final allProducts = MyProducts.allProducts[index];
+          return GestureDetector(
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => DetailsScreen(product: allProducts),
+              ),
+            ),
+            child: ProductCard(product: allProducts),
+          );
+        },
+      );
+
+  _buildPants() => GridView.builder(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          childAspectRatio: (1.0 / 1.4),
+          crossAxisSpacing: 12,
+          mainAxisSpacing: 12,
+        ),
+        scrollDirection: Axis.vertical,
+        itemCount: MyProducts.pants.length,
+        itemBuilder: (context, index) {
+          final pantsList = MyProducts.pants[index];
+          return GestureDetector(
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => DetailsScreen(product: pantsList),
+              ),
+            ),
+            child: ProductCard(product: pantsList),
+          );
+        },
+      );
+
+  _buildTShirts() => GridView.builder(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 1,
+          childAspectRatio: (1.0 / 1.4),
+          crossAxisSpacing: 12,
+          mainAxisSpacing: 12,
+        ),
+        scrollDirection: Axis.vertical,
+        itemCount: MyProducts.tshirts.length,
+        itemBuilder: (context, index) {
+          final tshirtsList = MyProducts.tshirts[index];
+          return GestureDetector(
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => DetailsScreen(product: tshirtsList),
+              ),
+            ),
+            child: ProductCard(product: tshirtsList),
+          );
+        },
+      );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,6 +114,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
               "Our Products",
@@ -34,9 +124,9 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                _buildProductCategory(0, "New"),
+                _buildProductCategory(0, "All"),
                 _buildProductCategory(1, "T-Shirts"),
                 _buildProductCategory(2, "Pants"),
               ],
@@ -45,7 +135,11 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 10,
             ),
             Expanded(
-              child: _buildAllProducts(),
+              child: isSelected == 0
+                  ? _buildAllProducts()
+                  : isSelected == 1
+                      ? _buildTShirts()
+                      : _buildPants(),
             )
           ],
         ),
@@ -53,47 +147,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-
-_buildProductCategory(int index, String name) => Container(
-      height: height * 4,
-      width: width * 10,
-      margin: const EdgeInsets.only(top: 10, right: 10),
-      alignment: Alignment.center,
-      decoration: BoxDecoration(
-          color: isSelected == index ? mainColor : lowColor,
-          borderRadius: BorderRadius.circular(8)),
-      child: Text(
-        name,
-        style: TextStyle(color: Colors.white),
-      ),
-    );
-
-_buildAllProducts() => GridView.builder(
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        childAspectRatio: (1.0 / 1.4),
-        crossAxisSpacing: 12,
-        mainAxisSpacing: 12,
-      ),
-      scrollDirection: Axis.vertical,
-      itemCount: MyProducts.allProducts.length,
-      itemBuilder: (context, index) {
-        final allProducts = MyProducts.allProducts[index];
-        return ProductCard(product: allProducts);
-      },
-    );
-
-_buildPants()=>GridView.builder(
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        childAspectRatio: (1.0 / 1.4),
-        crossAxisSpacing: 12,
-        mainAxisSpacing: 12,
-      ),
-      scrollDirection: Axis.vertical,
-      itemCount: MyProducts.tshirts.length,
-      itemBuilder: (context, index) {
-        final tshirtsList = MyProducts.tshirts[index];
-        return ProductCard(product: tshirtsList);
-      },
-    );
