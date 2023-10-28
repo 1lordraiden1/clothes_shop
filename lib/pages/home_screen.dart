@@ -2,9 +2,9 @@ import 'package:clothes_store/model/my_products.dart';
 import 'package:clothes_store/pages/details_screen.dart';
 import 'package:clothes_store/pages/pages_component/product_card.dart';
 import 'package:flutter/material.dart';
-import 'package:clothes_store/pages/pages_component/pages_component.dart';
 
 import '../component/component.dart';
+import 'favorate_sceen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -30,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
               borderRadius: BorderRadius.circular(8)),
           child: Text(
             name,
-            style: TextStyle(color: Colors.white),
+            style: const TextStyle(color: Colors.white),
           ),
         ),
       );
@@ -83,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   _buildTShirts() => GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 1,
+          crossAxisCount: 2,
           childAspectRatio: (1.0 / 1.4),
           crossAxisSpacing: 12,
           mainAxisSpacing: 12,
@@ -108,8 +108,19 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Temon We Bomba"),
+        title: const Text("Get Dressed"),
         centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const FavoriteScreen(),
+              ),
+            ),
+            icon: const Icon(Icons.favorite_border_outlined),
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(15.0),
@@ -131,7 +142,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 _buildProductCategory(2, "Pants"),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Expanded(

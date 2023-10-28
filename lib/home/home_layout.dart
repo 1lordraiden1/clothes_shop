@@ -38,14 +38,14 @@ class _HomeLayoutState extends State<HomeLayout> {
         ),
         onPressed: () {
           setState(() {
-            currentScreen = HomeScreen();
+            currentScreen = const HomeScreen();
             currentIndex = 1;
           });
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
-        shape: CircularNotchedRectangle(),
+        shape: const CircularNotchedRectangle(),
         notchMargin: 10,
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: isDesktop ? 120 : 60),
@@ -58,7 +58,7 @@ class _HomeLayoutState extends State<HomeLayout> {
                 MaterialButton(
                   onPressed: () {
                     setState(() {
-                      currentScreen = CartScreen();
+                      currentScreen = const CartScreen();
                       currentIndex = 0;
                     });
                   },
@@ -78,11 +78,11 @@ class _HomeLayoutState extends State<HomeLayout> {
                     ],
                   ),
                 ),
-                Spacer(),
+                const Spacer(),
                 MaterialButton(
                   onPressed: () {
                     setState(() {
-                      currentScreen = MenuScreen();
+                      currentScreen = const MenuScreen();
                       currentIndex = 2;
                     });
                   },
